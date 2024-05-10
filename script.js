@@ -25,3 +25,19 @@ let chosenOperator;
 function operate(num1, num2, operator) {
     return operator(num1, num2);
 }
+
+//registering buttons pressed
+
+let screen = document.querySelector('#screen');
+let numbers = document.querySelectorAll(".number");
+
+numbers.forEach((item) => {
+    item.addEventListener("click", () => {
+        if(screen.textContent.length >= 15){
+            return;
+        }
+        screen.append(item.textContent);
+    })
+})
+
+//storing values
