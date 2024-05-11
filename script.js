@@ -18,9 +18,6 @@ function divide(num1,num2) {
     return num1 / num2
 }
 
-let firstNumber;
-let secondNumber;
-let chosenOperator;
 
 function operate(num1, num2, operator) {
     return operator(num1, num2);
@@ -28,8 +25,8 @@ function operate(num1, num2, operator) {
 
 //registering buttons pressed
 
-let screen = document.querySelector('#screen');
-let numbers = document.querySelectorAll(".number");
+const screen = document.querySelector('#screen');
+const numbers = document.querySelectorAll(".number");
 
 numbers.forEach((item) => {
     item.addEventListener("click", () => {
@@ -41,3 +38,29 @@ numbers.forEach((item) => {
 })
 
 //storing values
+
+let firstNumber;
+let secondNumber;
+let chosenOperator
+
+function operatorChoice(operator){
+    if(operator === "add"){
+        return chosenOperator = add;
+    }else if(operator === "subtract"){
+        return chosenOperator = subtract;
+    }else if(operator === "multiply"){
+        return chosenOperator = multiply;
+    }else if(operator === "divide"){
+        return chosenOperator = divide;
+    }
+}
+
+const operators = document.querySelectorAll(".operator");
+
+operators.forEach((item) => {
+    item.addEventListener("click", () => {
+        firstNumber = Number(screen.textContent);
+        operatorChoice(item.id);
+    })
+})
+
