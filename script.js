@@ -18,10 +18,15 @@ function divide(num1,num2) {
     return num1 / num2
 }
 
+function modulo(num1, num2){
+    return num1 % num2;
+}
 
 function operate(num1, num2, operator) {
     return operator(num1, num2);
 }
+
+
 
 //registering buttons pressed
 
@@ -52,6 +57,8 @@ function operatorChoice(operator){
         return chosenOperator = multiply;
     }else if(operator === "divide"){
         return chosenOperator = divide;
+    }else if(operator === "modulo"){
+        return chosenOperator = modulo;
     }
 }
 
