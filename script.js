@@ -75,6 +75,14 @@ equals.addEventListener("click", () => {
     screen.textContent = result;
 })
 
+//square root
+
+const squareRoot = document.querySelector("#sqrt");
+
+squareRoot.addEventListener("click", () => {
+    screen.textContent = Math.sqrt(Number(screen.textContent));
+})
+
 //clear button
 
 const clearButton = document.querySelector("#clear");
@@ -84,4 +92,25 @@ clearButton.addEventListener("click", () => {
     secondNumber = null;
     chosenOperator = null;
     screen.textContent = "";
+})
+
+//sign change button
+
+const sign = document.querySelector("#sign");
+
+sign.addEventListener("click", () => {
+    let currentTotal = Number(screen.textContent);
+    screen.textContent = currentTotal - currentTotal*2;
+})
+
+//decimal button
+
+const decimalButton = document.querySelector("#decimal")
+
+decimalButton.addEventListener("click", () => {
+    if(screen.textContent.includes(".")){
+        return;
+    }
+
+    screen.append(".");
 })
