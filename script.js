@@ -41,7 +41,7 @@ numbers.forEach((item) => {
 
 let firstNumber;
 let secondNumber;
-let chosenOperator
+let chosenOperator;
 
 function operatorChoice(operator){
     if(operator === "add"){
@@ -58,9 +58,30 @@ function operatorChoice(operator){
 const operators = document.querySelectorAll(".operator");
 
 operators.forEach((item) => {
-    item.addEventListener("click", () => {
-        firstNumber = Number(screen.textContent);
-        operatorChoice(item.id);
+        item.addEventListener("click", () => {
+            firstNumber = Number(screen.textContent);
+            operatorChoice(item.id);
+            screen.textContent = "";
     })
 })
 
+//getting product
+
+const equals = document.querySelector("#equals");
+
+equals.addEventListener("click", () => {
+    secondNumber = Number(screen.textContent);
+    let result = operate(firstNumber, secondNumber, chosenOperator);
+    screen.textContent = result;
+})
+
+//clear button
+
+const clearButton = document.querySelector("#clear");
+
+clearButton.addEventListener("click", () => {
+    firstNumber = null;
+    secondNumber = null;
+    chosenOperator = null;
+    screen.textContent = "";
+})
