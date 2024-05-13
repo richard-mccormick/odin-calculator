@@ -15,22 +15,25 @@ body{
     flex-direction: column;
     background-color: darkslategray;
     align-items: center;
-    width: 300px;
-    height: 350px;
+    width: 500px;
+    height: 400px;
     padding-top: 25px;
     margin-top: 50px;
     border: solid 3px black;
     border-radius: 3px;
+    box-shadow: -3px 9px #535353;
 }
 
 .screen {
     background-color: lightslategray;
-    width: 225px;
-    height: 30px;
+    width: 450px;
+    height: 60px;
     text-align: end;
-    font-size: 25px;
+    font-family: 'Courier New', monospace;
+    font-size: 45px;
     margin-bottom: 50px;
     padding-right: 5px;
+    padding-top: 6px;
     border: solid 1px rgb(20, 32, 32);
 
 }
@@ -38,14 +41,22 @@ body{
 .rows {
     display: flex;
     justify-content: space-between;
-    width: 225px;
-    gap: 4px;
-    justify-content: center;
+    width: 450px;
+    gap: 5px;
 }
-
 .calc-button {
-    width: 50px;
-    height: 30px;
+    width: 100px;
+    height: 50px;
     margin-bottom: 4px;
     border: solid 1px #323232;
+    font-size: 40px;
+}
+
+.calc-button:hover {
+    background-color: rgb(160, 160, 160);
+}
+
+.calc-button:active {
+    background-color: rgb(160, 160, 160);
+    transform: translateY(3px);
 }
