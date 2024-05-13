@@ -34,7 +34,7 @@ const screen = document.querySelector('#screen');
 const numbers = document.querySelectorAll(".number");
 
 function clearOnPress(){
-    if(!(chosenOperator == null)){
+    if(!(chosenOperator == null) && !(secondNumber == null)){
         screen.textContent = "";
     }
 }
@@ -93,6 +93,7 @@ function getTotal() {
     secondNumber = Number(screen.textContent);
     let result = operate(firstNumber, secondNumber, chosenOperator);
     screen.textContent = result;
+    resultLength();
 }
 equals.addEventListener("click", () => {
     getTotal();
@@ -139,3 +140,20 @@ decimalButton.addEventListener("click", () => {
 
     screen.append(".");
 })
+
+//trimming result to 15 characters max
+
+function resultLength(){
+    let splitResult = screen.textContent.split(".");
+    let intHalf = splitResult[0];
+    let decHalf = splitResult[1];
+    let result = Number(screen.textContent)
+
+    if(intHalf.length > 15){
+        return screen.textContent = "ERROR";
+    }else if(decHalf.length > 0 && decHalf >= (14-intHalf)){
+        return screen.textContent = result.toFixed(14-intHalf);
+    }
+    
+
+}

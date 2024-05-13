@@ -8,6 +8,7 @@
 body{
     display: flex;
     justify-content: center;
+    background-color: rgb(142, 148, 182);
 }
 .container {
     display:flex;
@@ -15,8 +16,11 @@ body{
     background-color: darkslategray;
     align-items: center;
     width: 300px;
-    height: 450px;
+    height: 350px;
     padding-top: 25px;
+    margin-top: 50px;
+    border: solid 3px black;
+    border-radius: 3px;
 }
 
 .screen {
@@ -26,6 +30,7 @@ body{
     text-align: end;
     font-size: 25px;
     margin-bottom: 50px;
+    border: solid 1px rgb(20, 32, 32);
 
 }
 
@@ -33,11 +38,13 @@ body{
     display: flex;
     justify-content: space-between;
     width: 225px;
-    gap: 2px;
+    gap: 4px;
     justify-content: center;
 }
 
 .calc-button {
     width: 50px;
     height: 30px;
+    margin-bottom: 4px;
+    border: solid 1px #323232;
 }
