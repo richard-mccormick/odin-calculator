@@ -33,11 +33,18 @@ function operate(num1, num2, operator) {
 const screen = document.querySelector('#screen');
 const numbers = document.querySelectorAll(".number");
 
+function clearOnPress(){
+    if(!(chosenOperator == null)){
+        screen.textContent = "";
+    }
+}
+
 numbers.forEach((item) => {
     item.addEventListener("click", () => {
         if(screen.textContent.length >= 15){
             return;
         }
+        clearOnPress();
         screen.append(item.textContent);
     })
 })
@@ -66,20 +73,29 @@ const operators = document.querySelectorAll(".operator");
 
 operators.forEach((item) => {
         item.addEventListener("click", () => {
+            if (!(firstNumber == null)){
+               getTotal();
+               operatorChoice(item.id);
+               return firstNumber = Number(screen.textContent);
+            }
             firstNumber = Number(screen.textContent);
             operatorChoice(item.id);
             screen.textContent = "";
     })
 })
 
+
 //getting product
 
 const equals = document.querySelector("#equals");
 
-equals.addEventListener("click", () => {
+function getTotal() {
     secondNumber = Number(screen.textContent);
     let result = operate(firstNumber, secondNumber, chosenOperator);
     screen.textContent = result;
+}
+equals.addEventListener("click", () => {
+    getTotal();
 })
 
 //square root
@@ -117,6 +133,8 @@ const decimalButton = document.querySelector("#decimal")
 decimalButton.addEventListener("click", () => {
     if(screen.textContent.includes(".")){
         return;
+    }else if(screen.textContent === ""){
+        screen.append("0");
     }
 
     screen.append(".");
