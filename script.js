@@ -15,6 +15,9 @@ function multiply(num1,num2) {
 }
 
 function divide(num1,num2) {
+    if(num2 === 0 || num2 == null){
+        return "ERROR"
+    }
     return num1 / num2
 }
 
@@ -34,8 +37,9 @@ const screen = document.querySelector('#screen');
 const numbers = document.querySelectorAll(".number");
 
 function clearOnPress(){
-    if(!(chosenOperator == null) && !(secondNumber == null)){
+    if(!(result == null)){
         screen.textContent = "";
+        result = null;
     }
 }
 
@@ -73,10 +77,11 @@ const operators = document.querySelectorAll(".operator");
 
 operators.forEach((item) => {
         item.addEventListener("click", () => {
-            if (!(firstNumber == null)){
-               getTotal();
-               operatorChoice(item.id);
-               return firstNumber = Number(screen.textContent);
+            if (!(firstNumber == null) && result == null){
+                secondNumber = Number(screen.textContent);
+                getTotal();
+                operatorChoice(item.id);
+                return firstNumber = Number(screen.textContent);
             }
             firstNumber = Number(screen.textContent);
             operatorChoice(item.id);
@@ -88,14 +93,18 @@ operators.forEach((item) => {
 //getting product
 
 const equals = document.querySelector("#equals");
-
+let result;
 function getTotal() {
-    secondNumber = Number(screen.textContent);
-    let result = operate(firstNumber, secondNumber, chosenOperator);
+    result = operate(firstNumber, secondNumber, chosenOperator);
     screen.textContent = result;
     resultLength();
+    firstNumber = Number(screen.textContent);
 }
 equals.addEventListener("click", () => {
+    if(!(result == null)){
+        return getTotal();
+    }
+    secondNumber = Number(screen.textContent);
     getTotal();
 })
 
@@ -104,7 +113,8 @@ equals.addEventListener("click", () => {
 const squareRoot = document.querySelector("#sqrt");
 
 squareRoot.addEventListener("click", () => {
-    screen.textContent = Math.sqrt(Number(screen.textContent));
+    screen.textContent = Math.sqrt(Number(screen.textContent))
+    resultLength();
 })
 
 //clear button
@@ -143,17 +153,23 @@ decimalButton.addEventListener("click", () => {
 
 //trimming result to 15 characters max
 
-function resultLength(){
-    let splitResult = screen.textContent.split(".");
-    let intHalf = splitResult[0];
-    let decHalf = splitResult[1];
-    let result = Number(screen.textContent)
 
-    if(intHalf.length > 15){
-        return screen.textContent = "ERROR";
-    }else if(decHalf.length > 0 && decHalf >= (14-intHalf)){
-        return screen.textContent = result.toFixed(14-intHalf);
-    }
+function resultLength(){
+    if(screen.textContent.includes(".")){
+        let splitResult = screen.textContent.split(".");
+        let intHalf = splitResult[0];
+        let decHalf = splitResult[1];
+        let theResult = Number(screen.textContent)
     
 
+        if(intHalf.length > 15 || theResult > 1e20){
+            return screen.textContent = "ERROR";
+        }else if(decHalf.length > (14 - intHalf.length)){
+            return screen.textContent = theResult.toFixed(14-intHalf.length);
+        }
+    }else if (String(screen.textContent.length) > 15) {
+        return screen.textContent = "ERROR";
+    }
 }
+
+//checking for values
